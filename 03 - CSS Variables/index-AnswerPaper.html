@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scoped CSS Variables and JS</title>
+</head>
+<body>
+  <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
+
+  <div class="controls">
+    <label for="spacing">Spacing:</label>
+    <input id="spacing" type="range" name="spacing" min="10" max="200" value="10" data-sizing="px">
+
+    <label for="blur">Blur:</label>
+    <input id="blur" type="range" name="blur" min="0" max="25" value="10" data-sizing="px">
+
+    <label for="base">Base Color</label>
+    <input id="base" type="color" name="base" value="#ffc600">
+  </div>
+
+  <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
+
+  <style>
+  /* Todo：增加变量；目标设置CSS变量来控制1.照片间隙 2.背景颜色 3.JavaScript颜色
+  #1.在html根目录里建立三个变量并初始化赋值，“--”是css变量的命名规范1--spacing，bluer控制模糊度，base颜色控制
+  #2.在css设置中引用变量通过`var（）`，padding来控制照片间隙，blue赋值给filter，base为background的值，base为”javascript“和
+  的color值
+  */
+    
+    :root{
+    --spacing:10px;
+    --base:#ffc600;
+    --blur:10px
+    }
+    
+    img {
+      padding: var(--spacing);
+      filter: blur(var(--blur));
+      background: var(--base);
+    }
+
+    .hl {
+      color: var(--base);
+    }
+    /*
+      misc styles, nothing to do with CSS variables
+    */
+    body {
+      text-align: center;
+      background: #193549;
+      color: white;
+      font-family: 'helvetica neue', sans-serif;
+      font-weight: 100;
+      font-size: 50px;
+    }
+
+    .controls {
+      margin-bottom: 50px;
+    }
+
+    input {
+      width: 100px;
+    }
+  </style>
+
+  <script>
+      const inputs = document.querySelectorAll(".controls input");
+    // listen监听div中的control change事件,选择范围
+    // 当事件,spacing&blur的值是，
+      // color的颜色，range的移动（实际上是值的改变）。color的mouoseover
+    // settrt改变css变量-handleUpdate函数值需要加后缀px，control中的data-sizing通过dataset获取
+    //querySelectorAll（input）
+    
+  
+    // settrt改变css变量：通过定义后缀suffix—通过dataset来使用，改变值通过documentElement.csschangeproperty  document.documentElement.style.setProperty
+    
+    
+    function handleUpdate() {
+    //console.log(this.dataset);
+    const suffix = this.dataset.sizing || '';
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  }
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+    inputs.forEach(input => input.addEventListener('mousemove',handleUpdate));
+    
+
+</script>
+</body>
+</html>
