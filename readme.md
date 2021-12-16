@@ -1,6 +1,8 @@
 ﻿![](https://javascript30.com/images/JS3-social-share.png)
 
 # JavaScript30
+28-30，进度应该在当前日期+2
+12/16 --18 
 
 Starter Files + Completed solutions for the JavaScript 30 Day Challenge.
 
